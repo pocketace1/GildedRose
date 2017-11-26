@@ -12,7 +12,7 @@ namespace GildedRose
         public int Sellin { get; set; }
         public int Quality { get; set; }
         public int QualityIncrement { get; set; }
-        
+
         public NormalItem(string name, int sellin, int quality)
         {
             Name = name;
@@ -122,6 +122,31 @@ namespace GildedRose
         public override string ToString()
         {
             return "NO SUCH ITEM";
+        }
+    }
+    public class ItemMethods
+    {
+        public static NormalItem createItemObject(string l)
+        {
+            int sellinValue = 0;
+            int qualityValue = 0;
+            var spl = l.Split(' ');
+            if (spl[0].ToLowerInvariant() == "invalid" ||
+                spl.Length > 4 ||
+                spl.Length < 3   ||
+                (spl.Length == 3 && (!int.TryParse(spl[1], out sellinValue) || !int.TryParse(spl[2], out qualityValue)) ) ||
+                (spl.Length == 4 && (!int.TryParse(spl[2], out sellinValue) || !int.TryParse(spl[3], out qualityValue)) )
+                )
+            {
+                return new INVALIDITEM("NO SUCH ITEM", sellinValue, qualityValue);
+            };
+            var itemType = spl[0] + ((spl.Length == 4) ? spl[1] : "");
+
+            Type type = Type.GetType("GildedRose." + itemType);
+            object[] p = new object[] { itemType, sellinValue, qualityValue };
+            object itemInstance = Activator.CreateInstance(type, p);
+
+            return itemInstance as NormalItem;
         }
     }
 }

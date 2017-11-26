@@ -21,18 +21,14 @@ namespace GildedRose.Tests
             Stock.Add(new INVALIDITEM("INVALID ITEM", 2, 2));
             Stock.Add(new Conjured("Conjured", 2, 2));
             Stock.Add(new Conjured("Conjured", -1, 5));
-            Stock.print(" Initial Inventory");
         }
 
-
-        protected void _loadFileData()
-        {
-
-        }
+        [Ignore]
         [TestMethod]
-        public void TestMethod1()
+        public void TestMethod1() 
         {
             _loadData();
+            Stock.print(" Initial Inventory");
             Stock.Age();
             Stock.print(" AGED Inventory");
 

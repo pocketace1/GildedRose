@@ -10,7 +10,7 @@ namespace GildedRose
     {
         public List<NormalItem> Stock;
 
-        public Inventory()
+        public Inventory() 
         {
             Stock = new List<NormalItem>();
         }
@@ -27,10 +27,10 @@ namespace GildedRose
 
         public void print(string header)
         {
-            System.Diagnostics.Debug.WriteLine("   START of " + header);
-            Stock.ForEach(i => System.Diagnostics.Debug.WriteLine(i.ToString()));
-            System.Diagnostics.Debug.WriteLine("   END of " + header);
-            System.Diagnostics.Debug.WriteLine(" ");
+            Console.WriteLine("   START of " + header);
+            Stock.ForEach(i => Console.WriteLine(i.ToString()));
+            Console.WriteLine("   END of " + header);
+            Console.WriteLine(" ");
         }
     }
 }
